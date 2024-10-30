@@ -64,11 +64,14 @@ function introyno() {
 	screenchange();
 }
 function questiondk() {removequestion = false; setquestion();}
-function questionyes() {displayqc++; score++; questionindex();}
-function questionprob() {displayqc++; score += 0.5; questionindex();}
-function questionprobno() {displayqc++; score += 0.25; questionindex();}
+function questionyes() {score++; questionindex();}
+function questionprob() {score += 0.5; questionindex();}
+function questionprobno() {score += 0.25; questionindex();}
 function questionindex() {
 	questioncount++;
+	if (removequestion == false) {
+		displayqc++;
+	}
 	if (questioncount == questioncountmax) {
 		screenchange()
 	} else {
