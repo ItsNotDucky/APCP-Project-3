@@ -1,5 +1,5 @@
 window.addEventListener("load", addlistener);
-var stagestate = 0, score = 0, questioncount = 0, questioncountmax = 20, outputstate = null, removequestion = true;
+var stagestate = 0, score = 0, questioncount = 0, questioncountmax = 20, outputstate = null, removequestion = true, displayqc = 1;
 function addlistener() {
 	document.getElementById("btnintroyes").addEventListener("click", introyes)
 	document.getElementById("btnintrono").addEventListener("click", introyno)
@@ -64,9 +64,9 @@ function introyno() {
 	screenchange();
 }
 function questiondk() {removequestion = false; setquestion();}
-function questionyes() {score++; questionindex();}
-function questionprob() {score += 0.5; questionindex();}
-function questionprobno() {score += 0.25; questionindex();}
+function questionyes() {displayqc++; score++; questionindex();}
+function questionprob() {displayqc++; score += 0.5; questionindex();}
+function questionprobno() {displayqc++; score += 0.25; questionindex();}
 function questionindex() {
 	questioncount++;
 	if (questioncount == questioncountmax) {
@@ -79,7 +79,7 @@ function setquestion() {
 	let randomIndex = Math.floor(Math.random() * questionlist.length);
 	let akinatoridel = Math.floor(Math.random() * 9) + 1;
 	document.getElementById("imgakinatoe").src = "images/img" + akinatoridel + ".png";
-	document.getElementById("lblquestion").textContent = questionlist[randomIndex];
+	document.getElementById("lblquestion").textContent = "Question " + displayqc + ". " questionlist[randomIndex];
 	if (removequestion) {
 		questionlist.splice(randomIndex, 1);
 	}
