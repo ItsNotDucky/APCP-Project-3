@@ -1,13 +1,13 @@
 window.addEventListener("load", addlistener);
-var stagestate = 0, score = 0, questioncount = 0, questioncountmax = 20, outputstate = null, removequestion = true, displayquestioncount = 1;
+var stagestate = 0, score = 0, questioncount = 0, questioncountmax = 20, outputstate = null, removequestion = true, displaycount;
 function addlistener() {
-	document.getElementById("btnintroyes").addEventListener("click", introyes)
-	document.getElementById("btnintrono").addEventListener("click", introyno)
-	document.getElementById("btnyes").addEventListener("click", questionyes)
-	document.getElementById("btnno").addEventListener("click", questionindex)
-	document.getElementById("btnprob").addEventListener("click", questionprob)
-	document.getElementById("btnprobno").addEventListener("click", questionprobno)
-	document.getElementById("btndk").addEventListener("click", questiondk)
+	document.getElementById("btnintroyes").addEventListener("click", introyes);
+	document.getElementById("btnintrono").addEventListener("click", introyno);
+	document.getElementById("btnyes").addEventListener("click", questionyes);
+	document.getElementById("btnno").addEventListener("click", questionindex);
+	document.getElementById("btnprob").addEventListener("click", questionprob);
+	document.getElementById("btnprobno").addEventListener("click", questionprobno);
+	document.getElementById("btndk").addEventListener("click", questiondk);
 }
 function screenchange() {
 	switch (stagestate) {
@@ -23,14 +23,15 @@ function screenchange() {
 			document.getElementById("lblprompt").textContent = "Let's test to make sure";
 			document.getElementById("btnintroyes").textContent = "Okay sure";
 			document.getElementById("btnintrono").textContent = "Please no";
-			document.getElementById("btnintrono").name = "btnintro"
+			document.getElementById("btnintrono").name = "btnintro";
 			document.getElementById("btnintrono").disabled = true;
 			stagestate++;
 			break;
 		case 2:
 			document.getElementById("introscreen").style.display = "none";
 			document.getElementById("questionscreen").style.display = "block";
-			setquestion()
+			displaycount = 1;
+			setquestion();
 			document.getElementById("imgakinatoe").src = "images/img1.png";
 			stagestate++;
 			break;
@@ -81,7 +82,7 @@ function setquestion() {
 	document.getElementById("imgakinatoe").src = "images/img" + akinatoridel + ".png";
 	document.getElementById("lblquestion").textContent = "Question " + displayquestioncount + ". " questionlist[randomIndex];
 	if (removequestion) {
-		displayquestioncount++;
+		displaycount++;
 		questionlist.splice(randomIndex, 1);
 	}
 	removequestion = true;
