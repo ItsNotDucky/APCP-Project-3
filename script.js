@@ -1,10 +1,11 @@
+
 window.addEventListener("load", addlistener);
 var stagestate = 0, score = 0, questioncount = 0, questioncountmax = 20, outputstate = null, removequestion = true, displaycount = 1;
 function addlistener() {
 	document.getElementById("btnintroyes").addEventListener("click", introyes);
 	document.getElementById("btnintrono").addEventListener("click", introyno);
 	document.getElementById("btnyes").addEventListener("click", questionyes);
-	document.getElementById("btnno").addEventListener("click", questionindex);
+	document.getElementById("btnno").addEventListener("click", questionno);
 	document.getElementById("btnprob").addEventListener("click", questionprob);
 	document.getElementById("btnprobno").addEventListener("click", questionprobno);
 	document.getElementById("btndk").addEventListener("click", questiondk);
@@ -63,10 +64,11 @@ function introyno() {
 	}
 	screenchange();
 }
+function questionno() {displaycount++; questionindex();}
+function questionyes() {displaycount++; score++; questionindex();}
+function questionprob() {displaycount++; score += 0.5; questionindex();}
+function questionprobno() {displaycount++; score += 0.25; questionindex();}
 function questiondk() {removequestion = false; setquestion();}
-function questionyes() {score++; questionindex();}
-function questionprob() {score += 0.5; questionindex();}
-function questionprobno() {score += 0.25; questionindex();}
 function questionindex() {
 	questioncount++;
 	if (questioncount == questioncountmax) {
@@ -79,9 +81,8 @@ function setquestion() {
 	let randomIndex = Math.floor(Math.random() * questionlist.length);
 	let akinatoridel = Math.floor(Math.random() * 9) + 1;
 	document.getElementById("imgakinatoe").src = "images/img" + akinatoridel + ".png";
-	document.getElementById("lblquestion").textContent = "Question " + displayquestioncount + ". " + questionlist[randomIndex];
+	document.getElementById("lblquestion").textContent = "Question #" + displaycount + ": " + questionlist[randomIndex];
 	if (removequestion) {
-		displaycount++;
 		questionlist.splice(randomIndex, 1);
 	}
 	removequestion = true;
