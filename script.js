@@ -1,5 +1,5 @@
 window.addEventListener("load", addlistener);
-var stagestate = 0, score = 0, questioncount = 0, questioncountmax = 20, outputstate = null, removequestion = true, displaycount;
+var stagestate = 0, score = 0, questioncount = 0, questioncountmax = 20, outputstate = null, removequestion = true, displaycount = 1;
 function addlistener() {
 	document.getElementById("btnintroyes").addEventListener("click", introyes);
 	document.getElementById("btnintrono").addEventListener("click", introyno);
@@ -30,7 +30,6 @@ function screenchange() {
 		case 2:
 			document.getElementById("introscreen").style.display = "none";
 			document.getElementById("questionscreen").style.display = "block";
-			displaycount = 1;
 			setquestion();
 			document.getElementById("imgakinatoe").src = "images/img1.png";
 			stagestate++;
@@ -80,7 +79,7 @@ function setquestion() {
 	let randomIndex = Math.floor(Math.random() * questionlist.length);
 	let akinatoridel = Math.floor(Math.random() * 9) + 1;
 	document.getElementById("imgakinatoe").src = "images/img" + akinatoridel + ".png";
-	document.getElementById("lblquestion").textContent = "Question " + displayquestioncount + ". " questionlist[randomIndex];
+	document.getElementById("lblquestion").textContent = "Question " + displayquestioncount + ". " + questionlist[randomIndex];
 	if (removequestion) {
 		displaycount++;
 		questionlist.splice(randomIndex, 1);
