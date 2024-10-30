@@ -1,4 +1,3 @@
-
 window.addEventListener("load", addlistener);
 var stagestate = 0, score = 0, questioncount = 0, questioncountmax = 20, outputstate = null, removequestion = true, displaycount = 1;
 function addlistener() {
