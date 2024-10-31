@@ -35,8 +35,8 @@ function screenchange() {
 			stagestate++;
 			break;
 		case 3:
-			let gaypercentage = (score / questioncountmax) * 100
-			let revgaypercentage = 100 - gaypercentage
+			let yespercentage = (score / questioncountmax) * 100
+			let nopercentage = 100 - yespercentage
 			document.getElementById("imgakinatoe").src = "images/img3.png";
 			document.getElementById("questionscreen").style.display = "none";
 			document.getElementById("btnintroyes").style.display = "none";
@@ -44,9 +44,9 @@ function screenchange() {
 			document.getElementById("introscreen").style.display = "block";
 			document.getElementById("introscreen").style.height = "38px";
 			if (outputstate) {
-				document.getElementById("lblprompt").textContent = "There is a " + revgaypercentage + "% chance you are not an extrovert";
+				document.getElementById("lblprompt").textContent = "There is a " + nopercentage + "% chance you are not an extrovert";
 			} else {
-				document.getElementById("lblprompt").textContent = "There is a " + gaypercentage + "% chance you are extrovert";
+				document.getElementById("lblprompt").textContent = "There is a " + yespercentage + "% chance you are extrovert";
 			}
 			break;
 	}
